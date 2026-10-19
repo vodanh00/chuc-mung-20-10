@@ -1,0 +1,399 @@
+```html
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chúc Mừng Ngày Phụ Nữ Việt Nam 20/10 💖</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #1a0011 0%, #2d0820 40%, #4a0e2e 70%, #1a0011 100%);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .font-handwriting {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .font-pacifico {
+            font-family: 'Pacifico', cursive;
+        }
+
+        /* Animated Glowing Pink Text */
+        .pink-glow-text {
+            color: #ff69b4;
+            text-shadow: 
+                0 0 5px #ff1493,
+                0 0 10px #ff1493,
+                0 0 20px #ff69b4,
+                0 0 30px #ff69b4,
+                0 0 40px #ff1493;
+            animation: pulseGlow 2s infinite alternate ease-in-out;
+        }
+
+        @keyframes pulseGlow {
+            0% {
+                text-shadow: 
+                    0 0 5px #ff1493,
+                    0 0 10px #ff1493,
+                    0 0 20px #ff69b4,
+                    0 0 30px #ff69b4;
+                transform: scale(1);
+            }
+            100% {
+                text-shadow: 
+                    0 0 10px #ff1493,
+                    0 0 20px #ff1493,
+                    0 0 35px #ff69b4,
+                    0 0 50px #ff1493,
+                    0 0 60px #ff1493;
+                transform: scale(1.02);
+            }
+        }
+
+        /* Canvas Overlay for Petals & Hearts */
+        #canvas-petals {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* Typing Cursor Effect */
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 0.7s infinite;
+            color: #ff69b4;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Glassmorphism Card Style */
+        .glass-card {
+            background: rgba(255, 192, 203, 0.08);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 182, 193, 0.25);
+            box-shadow: 0 8px 32px 0 rgba(255, 20, 147, 0.25);
+        }
+
+        /* Heart Pulse Animation */
+        .heart-beat {
+            animation: heartbeat 1.3s infinite ease-in-out;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            14% { transform: scale(1.15); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.15); }
+            70% { transform: scale(1); }
+        }
+
+        /* Modal Overlay Animation */
+        .modal-enter {
+            animation: modalFadeIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4 text-white relative">
+
+    <!-- Petals & Hearts Canvas -->
+    <canvas id="canvas-petals"></canvas>
+
+    <!-- Music Control Button -->
+    <button id="musicToggleBtn" onclick="toggleAudio()" class="fixed top-4 right-4 z-50 bg-pink-600/80 hover:bg-pink-500 text-white p-3 rounded-full shadow-lg backdrop-blur-md transition-all duration-300 transform hover:scale-110 border border-pink-300/40 flex items-center justify-center w-12 h-12">
+        <i id="musicIcon" class="fas fa-music text-lg"></i>
+    </button>
+
+    <!-- Main Container Card -->
+    <div class="glass-card max-w-lg w-full rounded-3xl p-6 md:p-8 text-center relative z-20 my-auto shadow-2xl border border-pink-400/30">
+        
+        <!-- Header Badge -->
+        <div class="inline-block px-4 py-1.5 rounded-full bg-pink-500/20 border border-pink-400/40 text-pink-300 text-xs md:text-sm font-semibold tracking-widest uppercase mb-4 shadow-sm">
+            🌸 20 Tháng 10 - Vietnam Women's Day 🌸
+        </div>
+
+        <!-- Glowing Animated Pink Title -->
+        <h1 class="pink-glow-text font-extrabold text-2xl md:text-3xl lg:text-4xl leading-tight mb-6 tracking-wide">
+            CHÚC MỪNG NGÀY<br>PHỤ NỮ VIỆT NAM 20/10
+        </h1>
+
+        <!-- Decorative Floral Divider -->
+        <div class="my-3 flex justify-center items-center gap-3 text-pink-400">
+            <span class="h-[1px] w-12 bg-gradient-to-r from-transparent to-pink-400"></span>
+            <i class="fas fa-heart text-pink-500 text-xl heart-beat"></i>
+            <span class="h-[1px] w-12 bg-gradient-to-l from-transparent to-pink-400"></span>
+        </div>
+
+        <!-- Dynamic Typing Greeting Message Box -->
+        <div class="min-h-[140px] md:min-h-[160px] flex items-center justify-center py-4 px-2">
+            <p id="typingText" class="font-handwriting text-2xl md:text-3xl text-pink-200 leading-relaxed font-semibold typing-cursor">
+                <!-- Dynamic typewriter content -->
+            </p>
+        </div>
+
+        <!-- Interactive Surprise Button -->
+        <div class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <button onclick="openGiftModal()" class="w-full sm:w-auto px-6 py-3.5 bg-gradient-to-r from-pink-500 to-rose-600 hover:from-pink-600 hover:to-rose-700 text-white font-bold rounded-2xl shadow-lg shadow-pink-500/30 transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 border border-pink-300/30">
+                <i class="fas fa-gift text-lg animate-bounce"></i>
+                <span>Mở Hộp Quà Bất Ngờ ✨</span>
+            </button>
+        </div>
+
+        <!-- Footer Love Tag -->
+        <p class="mt-8 text-xs text-pink-300/70 italic font-light">
+            ~ Tỏa sáng theo cách riêng của bạn 💖 ~
+        </p>
+    </div>
+
+    <!-- Surprise Gift Modal -->
+    <div id="giftModal" class="fixed inset-0 bg-black/70 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-card max-w-md w-full rounded-3xl p-6 md:p-8 text-center relative border border-pink-400/50 shadow-2xl modal-enter">
+            <!-- Close Button -->
+            <button onclick="closeGiftModal()" class="absolute top-4 right-4 text-pink-300 hover:text-white text-xl w-8 h-8 rounded-full bg-pink-900/40 flex items-center justify-center transition-colors">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <!-- Gift Header Icon -->
+            <div class="w-20 h-20 bg-pink-500/20 rounded-full flex items-center justify-center mx-auto mb-4 border border-pink-400/40 shadow-inner">
+                <i class="fas fa-crown text-3xl text-pink-300 heart-beat"></i>
+            </div>
+
+            <!-- Modal Title -->
+            <h2 class="font-pacifico text-2xl md:text-3xl text-pink-300 mb-3">Thông Điệp Yêu Thương!</h2>
+
+            <!-- Detailed Wish Content -->
+            <p class="text-pink-100 text-sm md:text-base leading-relaxed mb-6 font-light">
+                Gửi đến người phụ nữ tuyệt vời nhất! Cảm ơn bạn vì đã luôn mang lại sự dịu dàng, ấm áp và nụ cười rạng rỡ cho thế giới này. Dù ở bất kỳ hoàn cảnh nào, hãy luôn tự tin, yêu thương bản thân và tỏa sáng thật lấp lánh nhé! 🌹✨
+            </p>
+
+            <!-- Interactive Sparkle Button -->
+            <button onclick="triggerConfettiSparkles(); closeGiftModal();" class="w-full py-3 bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white font-bold rounded-xl shadow-md transition-all duration-300 flex items-center justify-center gap-2">
+                <i class="fas fa-sparkles"></i>
+                <span>Nhận Tình Yêu & Phước Lành ❤️</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Typing Effect Script
+        const greetingMessage = "Chúc bạn luôn luôn xinh đẹp, rạng rỡ, hạnh phúc và tràn ngập niềm vui trong cuộc sống! Hãy luôn tỏa sáng theo cách riêng của mình nhé! 💖✨";
+        const typingTextElement = document.getElementById('typingText');
+        let charIndex = 0;
+
+        function typeWriter() {
+            if (charIndex < greetingMessage.length) {
+                typingTextElement.innerHTML += greetingMessage.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeWriter, 50);
+            } else {
+                typingTextElement.classList.remove('typing-cursor');
+            }
+        }
+
+        window.addEventListener('load', () => {
+            setTimeout(typeWriter, 500);
+            initPetalsCanvas();
+        });
+
+        // Audio Synth Generator (Web Audio API)
+        let audioCtx = null;
+        let isPlaying = false;
+        let musicInterval = null;
+
+        const melodyNotes = [
+            261.63, 329.63, 392.00, 523.25,
+            440.00, 349.23, 329.63, 293.66,
+            392.00, 440.00, 493.88, 523.25
+        ];
+
+        function playNote(freq, duration) {
+            if (!audioCtx || audioCtx.state !== 'running') return;
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                
+                gain.gain.setValueAtTime(0.01, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.15, audioCtx.currentTime + 0.1);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch(e) {}
+        }
+
+        function toggleAudio() {
+            const musicIcon = document.getElementById('musicIcon');
+            const musicBtn = document.getElementById('musicToggleBtn');
+
+            if (!isPlaying) {
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+
+                isPlaying = true;
+                musicIcon.className = "fas fa-volume-up text-lg text-pink-200 animate-pulse";
+                musicBtn.classList.add("ring-4", "ring-pink-400/50");
+
+                let noteIdx = 0;
+                musicInterval = setInterval(() => {
+                    playNote(melodyNotes[noteIdx], 1.2);
+                    noteIdx = (noteIdx + 1) % melodyNotes.length;
+                }, 800);
+            } else {
+                isPlaying = false;
+                clearInterval(musicInterval);
+                musicIcon.className = "fas fa-music text-lg";
+                musicBtn.classList.remove("ring-4", "ring-pink-400/50");
+            }
+        }
+
+        // Falling Petals and Floating Hearts Animation Canvas
+        function initPetalsCanvas() {
+            const canvas = document.getElementById('canvas-petals');
+            const ctx = canvas.getContext('2d');
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            const petals = [];
+            const petalCount = 35;
+
+            class Petal {
+                constructor() {
+                    this.reset();
+                }
+
+                reset() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = -20;
+                    this.size = Math.random() * 12 + 8;
+                    this.speedY = Math.random() * 1.5 + 0.8;
+                    this.speedX = Math.random() * 1 - 0.5;
+                    this.rotation = Math.random() * 360;
+                    this.rotationSpeed = (Math.random() - 0.5) * 2;
+                    this.opacity = Math.random() * 0.7 + 0.3;
+                    this.isHeart = Math.random() > 0.4;
+                }
+
+                update() {
+                    this.y += this.speedY;
+                    this.x += Math.sin(this.y * 0.01) + this.speedX;
+                    this.rotation += this.rotationSpeed;
+
+                    if (this.y > canvas.height + 20) {
+                        this.reset();
+                    }
+                }
+
+                draw() {
+                    ctx.save();
+                    ctx.translate(this.x, this.y);
+                    ctx.rotate((this.rotation * Math.PI) / 180);
+                    ctx.globalAlpha = this.opacity;
+
+                    if (this.isHeart) {
+                        ctx.fillStyle = '#ff69b4';
+                        ctx.beginPath();
+                        const topCurveHeight = this.size * 0.3;
+                        ctx.moveTo(0, topCurveHeight);
+                        ctx.bezierCurveTo(0, 0, -this.size / 2, 0, -this.size / 2, topCurveHeight);
+                        ctx.bezierCurveTo(-this.size / 2, (this.size + topCurveHeight) / 2, 0, this.size, 0, this.size);
+                        ctx.bezierCurveTo(0, this.size, this.size / 2, (this.size + topCurveHeight) / 2, this.size / 2, topCurveHeight);
+                        ctx.bezierCurveTo(this.size / 2, 0, 0, 0, 0, topCurveHeight);
+                        ctx.fill();
+                    } else {
+                        ctx.fillStyle = '#ff1493';
+                        ctx.beginPath();
+                        ctx.ellipse(0, 0, this.size / 2, this.size, Math.PI / 4, 0, 2 * Math.PI);
+                        ctx.fill();
+                    }
+
+                    ctx.restore();
+                }
+            }
+
+            for (let i = 0; i < petalCount; i++) {
+                petals.push(new Petal());
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                petals.forEach(petal => {
+                    petal.update();
+                    petal.draw();
+                });
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+        }
+
+        // Gift Modal Controls
+        function openGiftModal() {
+            document.getElementById('giftModal').classList.remove('hidden');
+        }
+
+        function closeGiftModal() {
+            document.getElementById('giftModal').classList.add('hidden');
+        }
+
+        function triggerConfettiSparkles() {
+            const canvas = document.getElementById('canvas-petals');
+            const ctx = canvas.getContext('2d');
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    ctx.save();
+                    ctx.fillStyle = '#fff';
+                    ctx.beginPath();
+                    ctx.arc(Math.random() * canvas.width, Math.random() * canvas.height, Math.random() * 4 + 2, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.restore();
+                }, i * 30);
+            }
+        }
+    </script>
+</body>
+</html>
+```
